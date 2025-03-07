@@ -1,0 +1,89 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    background-color: #222;
+    margin: auto;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+#ball {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    position: absolute;
+    border-radius: 50%;
+}
+
+#paddle {
+    width: 100px;
+    height: 15px;
+    background-color: blue;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#bricks-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    padding: 10px;
+}
+
+.brick {
+    width: 90px;
+    height: 30px;
+    background-color: green;
+}
+
+#pause-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border: 2px solid white;
+}
+
+.hidden {
+    display: none;
+}
+
+#fps {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    color: yellow;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#pause-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: orange;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#pause-btn:hover {
+    background-color: darkorange;
+}
