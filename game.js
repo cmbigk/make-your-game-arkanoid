@@ -6,13 +6,14 @@ const livesElement = document.getElementById("lives");
 const timerElement = document.getElementById("timer");
 const fpsElement = document.getElementById("fps");
 const pauseBtn = document.getElementById("pause-btn");
+const restartBtn = document.getElementById("restart-btn");
 
 let ballX, ballY;
 let ballSpeedX = 3, ballSpeedY = -3;
 let paddleX = 350;
 let score = 0, lives = 3;
 let gamePaused = false;
-let gameTime = 0;
+let gameTime = 60;
 let bricks = [];
 
 // FPS Counter
@@ -22,9 +23,9 @@ let fps = 0;
 
 // Initialize ball on paddle
 function resetBall() {
-    ballX = paddleX + 50;  // Start directly above the paddle
-    ballY = 440;  // Slightly above the paddle
-    ballSpeedX = 3 * (Math.random() > 0.5 ? 1 : -1); // Random left or right
+    ballX = paddleX + 50;
+    ballY = 440;
+    ballSpeedX = 3 * (Math.random() > 0.5 ? 1 : -1);
     ballSpeedY = -3;
 }
 
@@ -48,7 +49,7 @@ function createBricks() {
         const brick = document.createElement("div");
         brick.classList.add("brick");
         bricksContainer.appendChild(brick);
-        
+
         let row = Math.floor(i / 8);
         let col = i % 8;
         let xPos = col * 90;
@@ -73,30 +74,27 @@ function updateBall() {
     if (ballX <= 0 || ballX >= 785) ballSpeedX *= -1;
     if (ballY <= 0) ballSpeedY *= -1;
 
-    // Paddle collision (Fixed)
-    if (
-        ballY + 15 >= 465 &&  // Ball reaches paddle height
-        ballX >= paddleX && 
-        ballX <= paddleX + 100
-    ) {
-        if (ballSpeedY > 0) {  // Prevent multiple bounces
-        ballSpeedY *= -1;
-        ballY = 460; // Prevent sticking
+    // Paddle collision
+    if (ballY + 15 >= 465 && ballX >= paddleX && ballX <= paddleX + 100) {
+        if (ballSpeedY > 0) {
+            ballSpeedY *= -1;
+            ballY = 460;
+        }
     }
-}
 
-    // Brick collision (Improved)
+    // Brick collision
     bricks.forEach((brick) => {
         if (brick.active) {
             if (
-                ballX + 10 > brick.x && ballX - 10 < brick.x + brick.width &&  // X-axis overlap
-                ballY + 10 > brick.y && ballY - 10 < brick.y + brick.height    // Y-axis overlap
+                ballX + 10 > brick.x && ballX - 10 < brick.x + brick.width &&
+                ballY + 10 > brick.y && ballY - 10 < brick.y + brick.height
             ) {
                 brick.active = false;
                 brick.element.style.visibility = "hidden";
                 ballSpeedY *= -1;
                 score += 10;
                 scoreElement.textContent = `Score: ${score}`;
+                checkWin();
             }
         }
     });
@@ -105,11 +103,8 @@ function updateBall() {
     if (ballY >= 485) {
         lives--;
         livesElement.textContent = `Lives: ${lives}`;
-        if (lives === 0) {
-            alert("Game Over!");
-            location.reload();
-        }
-        resetBall();  // Ball now resets correctly above the paddle
+        checkGameOver();
+        resetBall();
     }
 
     ball.style.left = `${ballX}px`;
@@ -132,27 +127,74 @@ function calculateFPS() {
     }
 }
 
-// Pause and Continue button logic
+// Check for Game Over
+function checkGameOver() {
+    if (lives === 0) {
+        showPopup("Game Over! Try Again.");
+    }
+}
+
+// Check for Win
+function checkWin() {
+    if (bricks.every(brick => !brick.active)) {
+        showPopup("Congratulations! You Won!");
+    }
+}
+
+function checkTime() {
+    if (gameTime === 0) {
+        showPopup("Time is Up! Try Again.");
+    }
+}
+
+
+
+
+// Show Popup
+function showPopup(message) {
+    gamePaused = true;
+    const popup = document.createElement("div");
+    popup.innerHTML = `<p>${message}</p>`;
+    
+    popup.style.position = "fixed";
+    popup.style.top = "35%";
+    popup.style.left = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    popup.style.background = "grey";
+    popup.style.padding = "20px";
+    popup.style.borderRadius = "10px";
+    document.body.appendChild(popup);
+}
+
+// Restart Button
+restartBtn.addEventListener("click", () => {
+    location.reload();
+});
+
+// Pause Button
 pauseBtn.addEventListener("click", () => {
     gamePaused = !gamePaused;
     pauseBtn.textContent = gamePaused ? "Continue" : "Pause";
-    if (!gamePaused) {
-        requestAnimationFrame(updateBall);
-    }
+    if (!gamePaused) requestAnimationFrame(updateBall);
 });
 
-// Timer Function
+// Timer
+
+
 setInterval(() => {
-    if (!gamePaused) {
-        gameTime++;
-        timerElement.textContent = `Time: ${gameTime}`;
+  if (!gamePaused) {
+    if (gameTime > 0) {
+      gameTime--; // Decrease time by 1 second
+      const minutes = Math.floor(gameTime / 60); // Get minutes
+      const seconds = gameTime % 60; // Get seconds
+      timerElement.textContent = `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`; // Format time
+    } else {
+        checkTime();
+      gamePaused = true; // Pause the game
     }
+  }
 }, 1000);
 
-// Fix Pause Button Position
-pauseBtn.style.position = "absolute";
-pauseBtn.style.top = "520px";  // Move it below the game area
-pauseBtn.style.left = "350px"; // Center it
 
 // Start game
 resetBall();
