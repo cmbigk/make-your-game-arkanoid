@@ -31,6 +31,7 @@ function resetBall() {
 
 // Move paddle with keyboard
 document.addEventListener("keydown", (event) => {
+    if (gamePaused) return;
     if (event.key === "ArrowLeft" && paddleX > 0) {
         paddleX -= 50;
     }
@@ -57,6 +58,7 @@ function createBricks() {
 
         brick.style.left = `${xPos}px`;
         brick.style.top = `${yPos}px`;
+    
 
         bricks.push({ element: brick, x: xPos, y: yPos, width: 80, height: 30, active: true });
     }
