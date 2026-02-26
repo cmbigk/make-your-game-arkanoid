@@ -1,112 +1,99 @@
-🧱 Brick Breaker Game
-🎮 Introduction
-With the evolution of technology, the human brain demands constant stimulation. To combat boredom and practice your JavaScript skills, you’ve built your own game — a Brick Breaker–style project made entirely with plain JavaScript.
+# 🧱 Brick Breaker Game
+
+## 🎮 Introduction
+With the evolution of technology, the human brain demands constant stimulation. To combat boredom and practice your JavaScript skills, you've built your own game — a **Brick Breaker**–style project made entirely with plain JavaScript.  
 No external frameworks, no Canvas — just pure HTML, CSS, and DOM magic.
 
-🧩 Overview
-This is a classic Brick Breaker / Arkanoid-style game where a ball bounces off a paddle to destroy bricks. The player’s objective is to keep the ball in play, destroy all the bricks, and finish before the timer runs out.
+## 🧩 Overview
+This is a **classic Brick Breaker / Arkanoid-style game** where a ball bounces off a paddle to destroy bricks. The player's objective is to keep the ball in play, destroy all the bricks, and finish before the timer runs out.
 
-Key Mechanics
-Maintain smooth 60 FPS performance.
+### Key Mechanics
+- Maintain smooth **60 FPS** performance.
+- Use an optimized **`requestAnimationFrame()`** loop.
+- Responsive paddle movement with arrow keys.
+- Functional **pause and restart menus**.
+- Scoreboard displaying:
+   - **Timer:** Remaining game time.
+   - **Score:** Points earned by breaking bricks.
+   - **Lives:** Remaining attempts.
 
-Use an optimized requestAnimationFrame() loop.
+---
 
-Responsive paddle movement with arrow keys.
+## 🚀 How to Run the Game
 
-Functional pause and restart menus.
+The easiest way to run this game is with **Visual Studio Code** and the **Live Server** extension.
 
-Scoreboard displaying:
+### Steps
 
-Timer: Remaining game time.
+1. **Download or clone** this repository to your computer:
+   ```bash
+   git clone https://github.com/cmbigk/make-your-game-arkanoid
+   ```
 
-Score: Points earned by breaking bricks.
+2. **Open the folder in VS Code** — go to *File → Open Folder* and select the project directory.
 
-Lives: Remaining attempts.
+3. **Install the Live Server extension** (if not already installed) — open the Extensions tab with `Ctrl+Shift+X` (or `Cmd+Shift+X` on macOS), search for **"Live Server"** by *Ritwick Dey*, and click **Install**.
 
-🕹️ How to Run the Game
-The easiest way to run this game is with Visual Studio Code and the Live Server (GoLive) extension.
+4. **Start the live server** — click the **Go Live** button in the bottom-right corner of VS Code. Your default browser will open automatically at `http://127.0.0.1:5500`.
 
-Steps
-Download or clone this repository to your computer.
+5. **Play the game!** 🎉
 
-bash
-git clone https://github.com/cmbigk/make-your-game-arkanoid
-Open the folder in VS Code.
-Go to File → Open Folder and select the project directory.
+---
 
-Install the GoLive (Live Server) extension (if not already installed):
+## ⌨️ Game Controls
 
-Open the VS Code Extensions tab (Ctrl+Shift+X or Cmd+Shift+X on macOS).
+| Key / Button   | Action                      |
+|----------------|-----------------------------|
+| ← Arrow Left   | Move paddle left            |
+| → Arrow Right  | Move paddle right           |
+| Pause Button   | Pause or resume the game    |
+| Restart Button | Restart from the beginning  |
 
-Search for “Live Server” by Ritwick Dey and click Install.
+---
 
-Start the live server:
+## 🕹️ Gameplay Rules
 
-Click Go Live at the bottom-right corner of VS Code.
+- The ball starts on the paddle at the beginning of the game.
+- Move the paddle to bounce the ball and break bricks.
+- Each brick destroyed increases your score.
+- If the ball falls below the paddle, you lose a life.
+- The game ends when you lose all lives or run out of time.
+- Win by destroying **all bricks** before time expires.
 
-This will automatically open your default browser at a local address like http://127.0.0.1:5500.
+---
 
-Play the game!
-You’re ready to test, tweak, and enjoy breaking some bricks.
+## 🛠️ Developer Tools
 
-⌨️ Game Controls
-← Arrow Left: Move the paddle left
+You can use your browser's developer tools for optimization and debugging:
 
-→ Arrow Right: Move the paddle right
+- **Page Inspector:** Edit and inspect HTML/CSS in real time.
+- **Web Console:** View JavaScript logs and debug issues.
+- **Performance Tool:** Analyze FPS, JavaScript execution time, and rendering efficiency.
+- **Paint Flashing:** Visualize DOM repaints to fine-tune performance.
 
-Pause Button: Pause or resume the game
+---
 
-Restart Button: Restart from the beginning
+## ⚙️ Technologies Used
 
-🕹️ Gameplay Rules
-The ball starts on the paddle at the beginning of the game.
+- **JavaScript (ES6+)**
+- **HTML5**
+- **CSS3**
 
-Move the paddle to bounce the ball and break bricks.
+---
 
-Each brick destroyed increases your score.
+## 💡 Learning Outcomes
 
-If the ball falls below the paddle, you lose a life.
+Through this project, you'll gain hands-on experience with:
 
-The game ends when you lose all lives or run out of time.
+- `requestAnimationFrame()` and smooth animation loops
+- The JavaScript event loop and performance optimization
+- DOM manipulation and event handling
+- FPS monitoring and minimizing frame drops (jank-free animation)
 
-Win by destroying all bricks before time expires.
+---
 
-🧠 Developer Tools
-You can use your browser’s developer tools for optimization and debugging:
+## 🚀 Future Enhancements
 
-Page Inspector: Edit and inspect HTML/CSS.
-
-Web Console: View JavaScript logs and debug issues.
-
-Performance Tool: Analyze FPS and rendering efficiency.
-
-Paint Flashing: Visualize DOM repaints for performance fine-tuning.
-
-⚙️ Technologies Used
-JavaScript (ES6+)
-
-HTML5
-
-CSS3
-
-💡 Learning Outcomes
-Through this project, you’ll gain experience with:
-
-requestAnimationFrame() and smooth animation loops
-
-The JavaScript event loop and performance optimization
-
-DOM manipulation and event handling
-
-FPS monitoring and minimizing frame drops
-
-🚀 Future Enhancements
-Power-ups (multi-ball, larger paddle, etc.)
-
-Additional difficulty levels
-
-Background music and sound effects for immersion
-
-🏁 Conclusion
-A simple yet rewarding exercise in creating interactive games using only the web’s core technologies.
-Perfect for sharpening your programming instincts and creative thinking.
+- Power-ups (multi-ball, larger paddle, slow motion, etc.)
+- Additional difficulty levels with more complex brick layouts
+- Background music and sound effects for immersion
